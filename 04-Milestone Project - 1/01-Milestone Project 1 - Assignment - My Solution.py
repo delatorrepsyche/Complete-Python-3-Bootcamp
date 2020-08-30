@@ -27,18 +27,15 @@ def introduction_msg():
             print("(Please select either Y or N)")
 
 
-def display_rules(isplaying):
-    if isplaying:
-        print("\n---------------------------")
-        print("Great! The rule is simple!")
-        print("---------------------------")
-        print("The first one who can make a")
-        print("horizontal/vertical/diagonal")
-        print("with their chosen symbol wins!")
-        print("Good luck!")
-        print("---------------------------\n")
-    else:
-        print("That sad... :(")
+def display_rules():
+    print("\n---------------------------")
+    print("Great! The rule is simple!")
+    print("---------------------------")
+    print("The first one who can make a")
+    print("horizontal/vertical/diagonal")
+    print("with their chosen symbol wins!")
+    print("Good luck!")
+    print("---------------------------\n")
 
 
 def display_board():
@@ -91,10 +88,12 @@ def set_position(player_pos, player_mark):
 
 def board_has_space():
     has_space = False
-    for count in range(0, len(board) + 1):
+    for count in range(0, len(board)):
         if board[count] == ' ':
             has_space = True
             break
+        else:
+            pass
     return has_space
 
 
@@ -152,12 +151,15 @@ def game_on(player1_mark, player2_mark):
 
 
 isplaying = introduction_msg()
-display_rules(isplaying)
-(player_1, player_2) = ask_player_symbol()
-display_board()
-os.system('cls')
-winner = game_on(player_1, player_2)
-if winner == 'draw':
-    print("\nIt's a draw!")
+if isplaying is True:
+    display_rules()
+    (player_1, player_2) = ask_player_symbol()
+    display_board()
+    os.system('cls')
+    winner = game_on(player_1, player_2)
+    if winner == 'draw':
+        print("\nIt's a draw!")
+    else:
+        print(f"\nWinner is {winner}!")
 else:
-    print(f"\nWinner is {winner}!")
+    print("That's sad :(")
